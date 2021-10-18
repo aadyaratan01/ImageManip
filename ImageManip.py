@@ -10,7 +10,7 @@ def alter_brightness(pixel, level):
     return tuple(pixel)
 
 
-image = Image.open("/home/lalit/Pictures/Background.jpg").convert("RGB")
+image = Image.open(input("Enter image path: ")).convert("RGB")
 
 # Get a list of tuples representing each pixel [(Red, Green, Blue), (Red, Green, Blue), ...]
 image_data = image.getdata()
