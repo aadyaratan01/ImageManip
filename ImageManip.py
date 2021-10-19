@@ -10,6 +10,16 @@ def alter_brightness(pixel, level):
     return tuple(pixel)
 
 
+def make_negative(pixel):
+	''' Make each RGB pixel negative (in color)
+
+	This is equal to subtracting two matrices
+	'''
+	pixel = [255 - component for component in pixel]
+
+	return tuple(pixel)
+
+
 image = Image.open(input("Enter image path: ")).convert("RGB")
 
 # Get a list of tuples representing each pixel [(Red, Green, Blue), (Red, Green, Blue), ...]
