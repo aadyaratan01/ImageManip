@@ -9,6 +9,11 @@ def alter_brightness(pixel, level):
 
     return tuple(pixel)
 
+def skew_image(image):
+    return image.transform(image.size, Image.AFFINE, (1, -0.5, 0.5 * image.size[0], 0, 1, 0))
+
+def crop_and_resize(image):
+    return image.transform(image.size, Image.EXTENT, (30, 40, image.size[0] * 5 // 6, image.size[1] // 2 + 40))
 
 def make_negative(pixel):
 	''' Make each RGB pixel negative (in color)
