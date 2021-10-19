@@ -1,4 +1,5 @@
-from PIL import Image
+
+from PIL import Image, ImageOps, ImageEnhance
 
 
 def increase_brightness(image: Image):
@@ -47,6 +48,20 @@ def make_negative(image: Image):
     return modified_image
 
 
+def add_border(image: Image):
+    """Add a black border of width 10px"""
+    border_width = 10
+    border_color = "black"
+
+    return ImageOps.expand(image, border=border_width, fill=border_color)
+
+
+def enhance_image(image: Image):
+    """Enhance image color"""
+
+    return ImageEnhance.Color(image).enhance(2.0)
+
+
 def invalid_choice(image: Image):
     print("Invalid choice, source image will be shown")
 
@@ -55,11 +70,18 @@ def invalid_choice(image: Image):
 
 image = Image.open(input("Enter image path: ")).convert("RGB")
 
-choices = {1: increase_brightness, 2: make_negative, 3: skew_image, 4: crop_and_resize}
+choices = {
+    1: increase_brightness,
+    2: make_negative,
+    3: skew_image,
+    4: crop_and_resize,
+    5: add_border,
+    6: enhance_image,
+}
 
 choice = int(
     input(
-        "Enter:\n1. To increase brightness by 10%\n2. To make image negative in color\n3. To skew image\n 4. To crop and resize image\n:"
+        "Enter:\n\n1. To increase brightness by 10%\n2. To make image negative in color\n3. To skew image\n4. To crop and resize image\n5. To add border\n6. To enhance image\n\n:"
     )
 )
 
