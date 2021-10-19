@@ -9,6 +9,11 @@ def alter_brightness(pixel, level):
 
     return tuple(pixel)
 
+def skew_image(image):
+    return image.transform(image.size, Image.AFFINE, (1, -0.5, 0.5 * image.size[0], 0, 1, 0))
+
+def crop_and_resize(image):
+    return image.transform(image.size, Image.EXTENT, (30, 40, image.size[0] * 5 // 6, image.size[1] // 2 + 40))
 
 image = Image.open(input("Enter image path: ")).convert("RGB")
 
@@ -26,17 +31,3 @@ new_image.putdata(image_data_modified)
 
 # Show the newly generated image
 new_image.show()
-
-from PIL import Image 
-
-#Skews an image--function 1
-Image1 = Image.open('cat.jpg')
-Image1 = Image1.transform(Image1.size,Image.AFFINE,(1,-0.5,0.5 * Image1.size[0],0,1,0))
-Image1.save('cat_skewed.jpg')
-
-#Extents an Image--Function 2
-# This function helps to crop a part of the image and resize to whaterver scale. the parameters are( measure of the final image, coordinates of top left corner, width and height)
-Image2 = Image.open('cat.jpg')
-print(Image2.size)
-Image2 = Image2.transform(Image2.size,Image.EXTENT,(30,40,Image2.size[0]*5//6,Image2.size[1]//2+40))
-Image2.save('cat_crop&zoom.jpg')
