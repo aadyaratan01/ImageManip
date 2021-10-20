@@ -50,11 +50,11 @@ def make_negative(image: Image):
 def skew_image(image: Image):
     #Skews an image
     
-    Image_skew = image.copy()
+    skewed_image = image.copy()
     
-    Image_skew = Image1.transform(Image_skew.size,Image.AFFINE,(1,-0.5,0.5 * Image_skew.size[0],0,1,0))
+    skewed_image = skewed_image.transform(skewed_image.size,Image.AFFINE,(1,-0.5,0.5 * skewed_image.size[0],0,1,0))
     
-    return Image_skew;
+    return skewed_image
     
 def crop_and_resize(image: Image):
 
@@ -63,11 +63,11 @@ def crop_and_resize(image: Image):
     
     print(image.size)
     
-    crop_image = image.copy()
+    cropped_image = image.copy()
     
-    crop_image = crop_image.transform(crop_image.size,Image.EXTENT,(30,40,crop_image.size[0]*5//6,crop_image.size[1]//2+40))
+    cropped_image = cropped_image.transform(cropped_image.size,Image.EXTENT,(30,40,cropped_image.size[0]*5//6,cropped_image.size[1]//2+40))
     
-    return crop_image;
+    return cropped_image
 
 
 def add_border(image: Image):
