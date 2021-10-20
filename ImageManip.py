@@ -64,8 +64,6 @@ def crop_and_resize(image: Image):
     # Crops and Resizes an Image
     # This function helps to crop a part of the image and resize to whaterver scale. the parameters are( measure of the final image, coordinates of top left corner, width and height)
 
-    print(image.size)
-
     cropped_image = image.copy()
 
     cropped_image = cropped_image.transform(
