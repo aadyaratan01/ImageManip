@@ -1,4 +1,3 @@
-
 from PIL import Image, ImageOps, ImageEnhance
 
 
@@ -46,6 +45,34 @@ def make_negative(image: Image):
     modified_image.putdata(modified_image_data)
 
     return modified_image
+
+
+def skew_image(image: Image):
+    # Skews an image
+
+    skewed_image = image.copy()
+
+    skewed_image = skewed_image.transform(
+        skewed_image.size, Image.AFFINE, (1, -0.5, 0.5 * skewed_image.size[0], 0, 1, 0)
+    )
+
+    return skewed_image
+
+
+def crop_and_resize(image: Image):
+
+    # Crops and Resizes an Image
+    # This function helps to crop a part of the image and resize to whaterver scale. the parameters are( measure of the final image, coordinates of top left corner, width and height)
+
+    cropped_image = image.copy()
+
+    cropped_image = cropped_image.transform(
+        cropped_image.size,
+        Image.EXTENT,
+        (30, 40, cropped_image.size[0] * 5 // 6, cropped_image.size[1] // 2 + 40),
+    )
+
+    return cropped_image
 
 
 def add_border(image: Image):
