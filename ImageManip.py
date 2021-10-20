@@ -46,6 +46,28 @@ def make_negative(image: Image):
     modified_image.putdata(modified_image_data)
 
     return modified_image
+    
+def skew_image(image: Image):
+    #Skews an image
+    
+    Image_skew = image.copy()
+    
+    Image_skew = Image1.transform(Image_skew.size,Image.AFFINE,(1,-0.5,0.5 * Image_skew.size[0],0,1,0))
+    
+    return Image_skew;
+    
+def crop_and_resize(image: Image):
+
+    #Crops and Resizes an Image
+    # This function helps to crop a part of the image and resize to whaterver scale. the parameters are( measure of the final image, coordinates of top left corner, width and height)
+    
+    print(image.size)
+    
+    crop_image = image.copy()
+    
+    crop_image = crop_image.transform(crop_image.size,Image.EXTENT,(30,40,crop_image.size[0]*5//6,crop_image.size[1]//2+40))
+    
+    return crop_image;
 
 
 def add_border(image: Image):
