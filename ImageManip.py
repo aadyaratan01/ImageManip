@@ -3,7 +3,7 @@ from PIL import Image, ImageOps, ImageEnhance
 
 def increase_brightness(image: Image):
     """Increase brightness by 10%
-    This is equal to multiplying each row in the matrix by 1.10
+    This is equal to multiplying each row in the matrix by 1.10 (a scalar value)
     """
 
     # Get a list of tuples representing each pixel [(Red, Green, Blue), (Red, Green, Blue), ...]
@@ -60,9 +60,9 @@ def skew_image(image: Image):
 
 
 def crop_and_resize(image: Image):
-
-    # Crops and Resizes an Image
-    # This function helps to crop a part of the image and resize to whaterver scale. the parameters are( measure of the final image, coordinates of top left corner, width and height)
+    """Crops and Resizes an Image
+    This function helps to crop a part of the image and resize to whatever scale. 
+    The parameters are( measure of the final image, coordinates of top left corner, width and height)"""
 
     cropped_image = image.copy()
 
