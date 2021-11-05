@@ -61,7 +61,7 @@ def skew_image(image: Image):
 
 def crop_and_resize(image: Image):
     """Crops and Resizes an Image
-    This function helps to crop a part of the image and resize to whatever scale. 
+    This function helps to crop a part of the image and resize to whatever scale.
     The parameters are( measure of the final image, coordinates of top left corner, width and height)"""
 
     cropped_image = image.copy()
