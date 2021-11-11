@@ -1,13 +1,13 @@
 from PIL import Image, ImageOps, ImageEnhance
 
 
-def increase_brightness(image: Image):
+def increase_brightness(source_image: Image):
     """Increase brightness by 10%
     This is equal to multiplying each row in the matrix by 1.10 (a scalar value)
     """
 
     # Get a list of tuples representing each pixel [(Red, Green, Blue), (Red, Green, Blue), ...]
-    image_data = image.getdata()
+    image_data = source_image.getdata()
 
     modified_image_data = []
 
@@ -17,20 +17,20 @@ def increase_brightness(image: Image):
 
         modified_image_data.append(tuple(pixel))
 
-    modified_image = Image.new(mode="RGB", size=image.size)
+    modified_image = Image.new(mode="RGB", size=source_image.size)
 
     modified_image.putdata(modified_image_data)
 
     return modified_image
 
 
-def make_negative(image: Image):
+def make_negative(source_image: Image):
     """Make image negative in color
     This is equal to subtracting two matrices [(Red, Green, Blue), ...] from [(255, 255, 255), ...]
     """
 
     # Get a list of tuples representing each pixel [(Red, Green, Blue), (Red, Green, Blue), ...]
-    image_data = image.getdata()
+    image_data = source_image.getdata()
 
     modified_image_data = []
 
@@ -40,17 +40,17 @@ def make_negative(image: Image):
 
         modified_image_data.append(tuple(pixel))
 
-    modified_image = Image.new(mode="RGB", size=image.size)
+    modified_image = Image.new(mode="RGB", size=source_image.size)
 
     modified_image.putdata(modified_image_data)
 
     return modified_image
 
 
-def skew_image(image: Image):
+def skew_image(source_image: Image):
     # Skews an image
 
-    skewed_image = image.copy()
+    skewed_image = source_image.copy()
 
     skewed_image = skewed_image.transform(
         skewed_image.size, Image.AFFINE, (1, -0.5, 0.5 * skewed_image.size[0], 0, 1, 0)
@@ -59,12 +59,12 @@ def skew_image(image: Image):
     return skewed_image
 
 
-def crop_and_resize(image: Image):
+def crop_and_resize(source_image: Image):
     """Crops and Resizes an Image
     This function helps to crop a part of the image and resize to whatever scale.
     The parameters are( measure of the final image, coordinates of top left corner, width and height)"""
 
-    cropped_image = image.copy()
+    cropped_image = source_image.copy()
 
     cropped_image = cropped_image.transform(
         cropped_image.size,
@@ -75,24 +75,24 @@ def crop_and_resize(image: Image):
     return cropped_image
 
 
-def add_border(image: Image):
+def add_border(source_image: Image):
     """Add a black border of width 10px"""
     border_width = 10
     border_color = "black"
 
-    return ImageOps.expand(image, border=border_width, fill=border_color)
+    return ImageOps.expand(source_image, border=border_width, fill=border_color)
 
 
-def enhance_image(image: Image):
+def enhance_image(source_image: Image):
     """Enhance image color"""
 
-    return ImageEnhance.Color(image).enhance(2.0)
+    return ImageEnhance.Color(source_image).enhance(2.0)
 
 
-def invalid_choice(image: Image):
+def invalid_choice(source_image: Image):
     print("Invalid choice, source image will be shown")
 
-    return image
+    return source_image
 
 
 image = Image.open(input("Enter image path: ")).convert("RGB")
@@ -108,7 +108,8 @@ choices = {
 
 choice = int(
     input(
-        "Enter:\n\n1. To increase brightness by 10%\n2. To make image negative in color\n3. To skew image\n4. To crop and resize image\n5. To add border\n6. To enhance image\n\n:"
+        "Enter:\n\n1. To increase brightness by 10%\n2. To make image negative in color\n3. To skew "
+        "image\n4. To crop and resize image\n5. To add border\n6. To enhance image\n\n: "
     )
 )
 
