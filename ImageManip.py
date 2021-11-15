@@ -109,12 +109,15 @@ choices = {
     4: crop_and_resize,
     5: add_border,
     6: enhance_image,
+    7: make_grayscale,
+    8: mirror_image
 }
 
 choice = int(
     input(
         "Enter:\n\n1. To increase brightness by 10%\n2. To make image negative in color\n3. To skew "
-        "image\n4. To crop and resize image\n5. To add border\n6. To enhance image\n\n: "
+        "image\n4. To crop and resize image\n5. To add border\n6. To enhance image\n7. To make image black and "
+        "white\n8. To mirror image\n: "
     )
 )
 
