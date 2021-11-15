@@ -89,6 +89,11 @@ def enhance_image(source_image: Image):
     return ImageEnhance.Color(source_image).enhance(2.0)
 
 
+def make_grayscale(source_image: Image):
+    """Make image grayscale"""
+    return ImageOps.grayscale(source_image)
+
+
 def invalid_choice(source_image: Image):
     print("Invalid choice, source image will be shown")
 
