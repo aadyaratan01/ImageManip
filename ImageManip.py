@@ -93,7 +93,19 @@ def make_grayscale(source_image: Image):
     """Make image grayscale"""
     return ImageOps.grayscale(source_image)
 
+def mirror_image(source_image: Image):
+    width, height = source_image.size
 
+    new_image = Image.new(mode="RGB", size=source_image.size)
+
+    for x in range(width):
+        for y in range(height):
+            new_pixel = source_image.getpixel((width - x - 1, y))
+            new_image.putpixel((x, y), new_pixel)
+
+    return new_image
+    
+    
 def invalid_choice(source_image: Image):
     print("Invalid choice, source image will be shown")
 
